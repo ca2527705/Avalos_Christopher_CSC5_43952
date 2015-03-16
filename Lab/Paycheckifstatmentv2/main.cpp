@@ -29,9 +29,10 @@ int main(int argc, char** argv) {
     cout<<"Input the amount of hours you've worked\n";
     cin>>hrs;
     //calculate the pay check
-    pay=hrs<oTime?
-        payrate*hrs:
-        payrate*(hrs+(oRate-1)*(hrs-oTime));
+    pay=payrate*hrs;
+    if (hrs>oTime){
+        pay+=payrate*(oRate-1)*(hrs-oTime);
+    }
     //output the results to the screen
     cout<<fixed<<setprecision(2)<<showpoint;
     cout<<"Hours worked = "<<hrs<<"(hrs)"<<endl;
@@ -51,4 +52,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-
