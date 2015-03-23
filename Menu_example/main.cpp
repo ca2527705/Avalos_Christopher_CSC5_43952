@@ -3,9 +3,6 @@
  * Author: Dr. Mark E. Lehr
  * Purpose:  To Illustrate the code for
  * developing a menu
- * Problem 1 -> Sum the numbers between 1 and 10 with a for-loop
- * Problem 2 -> Sum the numbers between 1 and 10
- * Problem 3 ->divide Sum the numbers between 1 and 10 with a do-while loop
  * Created on October 13, 2011, 6:44 PM
  */
 
