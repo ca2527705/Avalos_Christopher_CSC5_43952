@@ -34,6 +34,7 @@ int main(int argc, char** argv) {
     cout<<"What is your package A,B,C"<<endl;
     cin>>package;
     cout<<"What is the customer's name?"<<endl;
+    cin.ignore();
     cin.getline(name,SIZE);
     //Calculate the bill
     switch(package){
