@@ -114,6 +114,6 @@ int main(int argc, char** argv) {
             cout<<"Exit?"<<endl;
             }
             };
-    }while(choice>='1'&&choice<='4');
+    }while(choice>='1'&&choice<='10');
 return 0;
 }

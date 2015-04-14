@@ -26,6 +26,12 @@ void problem1();
 void problem2();
 void problem3();
 void problem4();
+void problem5();
+void problem6();
+void problem7();
+void problem8();
+void problem9();
+void problem0();
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -38,7 +44,13 @@ int main(int argc, char** argv) {
         cout<<"Type 1 to solve problem 1"<<endl;
         cout<<"Type 2 to solve problem 2"<<endl;
         cout<<"Type 3 to solve problem 3"<<endl;
-        cout<<"Type 4 to solve the Cable Bill"<<endl;
+        cout<<"Type 4 to solve problem 4"<<endl;
+        cout<<"Type 5 to solve problem 5"<<endl;
+        cout<<"Type 6 to solve problem 6"<<endl;
+        cout<<"Type 7 to solve problem 7"<<endl;
+        cout<<"Type 8 to solve problem 8"<<endl;
+        cout<<"Type 9 to solve problem 9"<<endl;
+        cout<<"Type 0 to solve problem 10"<<endl;
         cout<<"Type anything else to quit with no solutions."<<endl;
         //Read the choice
         cin>>choice;
@@ -48,9 +60,15 @@ int main(int argc, char** argv) {
             case '2':problem2();break;
             case '3':problem3();break;
             case '4':problem4();break;
+            case '5':problem5();break;
+            case '6':problem6();break;
+            case '7':problem7();break;
+            case '8':problem8();break;
+            case '9':problem9();break;
+            case '0':problem0();break;
             default :cout<<"Exit?"<<endl;
         };
-    }while(choice>='1'&&choice<='4');
+    }while(choice>='0'&&choice<='9');
     //Exit Stage right
     return 0;
 }
@@ -128,4 +146,52 @@ void problem4(){
     out<<"Amount Owed: $"<<bill<<endl;
     //Close the file
     out.close();
+}
+
+//******************* Problem 5 ********************/
+void problem5(){
+    int sum=1+2+3+4+5+6+7+8+9+10;
+    cout<<endl;
+    cout<<"Solution to 1 sum(1->10)="<<sum<<endl;
+    cout<<endl;
+}
+    
+//******************* Problem 6 ********************/
+void problem6(){
+    int prod=1*2*3*4*5*6*7*8*9*10;
+    cout<<endl;
+    cout<<"Solution n!(1->10)="<<prod<<endl;
+    cout<<endl;
+}
+    
+//******************* Problem 7 ********************/
+void problem7(){
+    float quot=1.0f/2/3/4/5/6/7/8/9/10;
+    cout<<endl;
+    cout<<"Solution to 3 quot(1->10)="<<quot<<endl;
+    cout<<endl;
+}
+
+//******************* Problem 8 ********************/
+void problem8(){
+    int sum=1+2+3+4+5+6+7+8+9+10;
+    cout<<endl;
+    cout<<"Solution to 1 sum(1->10)="<<sum<<endl;
+    cout<<endl;
+}
+    
+//******************* Problem 9 ********************/
+void problem9(){
+    int prod=1*2*3*4*5*6*7*8*9*10;
+    cout<<endl;
+    cout<<"Solution n!(1->10)="<<prod<<endl;
+    cout<<endl;
+}
+    
+//******************* Problem 10 ********************/
+void problem0(){
+    float quot=1.0f/2/3/4/5/6/7/8/9/10;
+    cout<<endl;
+    cout<<"Solution to 3 quot(1->10)="<<quot<<endl;
+    cout<<endl;
 }
