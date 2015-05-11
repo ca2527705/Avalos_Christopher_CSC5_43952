@@ -21,9 +21,11 @@ using namespace std;
 int main(int argc, char** argv) {
     //Mostly variables involving dice rolls and the random generator
     short pow,def,attk,tohit;
+    //rolls using D6
     int roll1=(rand()%6)+1;
     int roll2=(rand()%6)+1;
     tohit=roll1+roll2+attk;
+    //Used to determine the stats
     srand(time(0));
     //Creating the character stats
     //Gives them an option to either roll randomly for their stats or to input
@@ -37,12 +39,15 @@ int main(int argc, char** argv) {
     if (answer=='Y'||answer=='y'){
         do{
         cout<<"The following rolls will see what kind of stats you have"<<endl;
+        //uses 3 sided die plus minimum result-1
         pow=(rand()%3)+11;
         def=(rand()%3)+14;
         attk=(rand()%3)+6;
+        //show them the random results
         cout<<"Your Attack modifier is "<<attk<<endl;       
         cout<<"Your Defense is "<<def<<endl;
         cout<<"Your Pow is "<<pow<<endl;
+        //Give them the option to reroll if they want
         cout<<"Are you okay with these stats?"<<endl;
         cout<<"Enter Y to accept and N to enter new stats"<<endl;
         cin>>answer;
@@ -73,16 +78,24 @@ int main(int argc, char** argv) {
             cout<<"Input a number between or equal to 7 and 9\n";
             cin>>attk;
         }
+        //show them their choosen results
         cout<<"These are your choosen stats: "<<endl;
         cout<<"Your Pow is "<<pow<<endl;
         cout<<"Your Def is "<<def<<endl;
         cout<<"Your Attk is "<<attk<<endl;
+        //Give them the option to re input their stats if they want
         cout<<"Are you okay with these stats?"<<endl;
         cout<<"Enter Y to accept and N to enter new stats"<<endl;
         cin>>answer;
     }while (answer=='n'||answer=='N');
            
     }
+    //Reserve this spot for the input into a file
+    
+    
+    
+    //After their stats are either input or rolled, have them select their
+    //opponents from the list
 
     return 0;
 }
