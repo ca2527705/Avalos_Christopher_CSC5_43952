@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 //user libraries
 
@@ -27,6 +28,9 @@ int main(int argc, char** argv) {
     tohit=roll1+roll2+attk;
     //Used to determine the stats
     srand(time(0));
+    //for file in/out
+    ofstream fileout;
+    ifstream filein;
     //Creating the character stats
     //Gives them an option to either roll randomly for their stats or to input
     //their own
@@ -91,8 +95,15 @@ int main(int argc, char** argv) {
            
     }
     //Reserve this spot for the input into a file
-    
-    
+    cout<<"Your chosen stats will be put into a file if you want to use it"
+            "later"<<endl;
+    fileout.open("Your_Stats.dat");
+    fileout<<"Your Pow is = "<<pow<<"\r\n"
+            <<"Your Def is = "<<def<<"\r\n"
+            <<"Your Attk is = "<<attk<<endl;
+    fileout.close();
+    cout<<"Your stats have been recorded to a file!"<<endl;
+    cout<<"Please select your opponent\n";
     
     //After their stats are either input or rolled, have them select their
     //opponents from the list
