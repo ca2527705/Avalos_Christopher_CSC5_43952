@@ -103,10 +103,45 @@ int main(int argc, char** argv) {
             <<"Your Attk is = "<<attk<<endl;
     fileout.close();
     cout<<"Your stats have been recorded to a file!"<<endl;
-    cout<<"Please select your opponent\n";
+    
     
     //After their stats are either input or rolled, have them select their
     //opponents from the list
+    cout<<"Please select your opponent\n";
+    char choice;
+    bool computer;
+    short compHP,playHP;
+    do{
+    cout<<"Type 1 to fight problem 1"<<endl;
+    cout<<"Type 2 to fight problem 2"<<endl;
+    cout<<"Type 3 to fight problem 3"<<endl;
+    cout<<"Type 4 to fight the Cable Bill"<<endl;
+    cin>>choice;
+
+    //set up the menu for the different opponents
+    switch(choice){
+        case '1':{
+            cout<<"Testing"<<endl;
+            break;
+        }
+        case '2':{
+            cout<<"Testing"<<endl;
+            break;
+        }
+        case '3':{
+            cout<<"Testing"<<endl;
+            break;
+        }
+        case '4':{
+            cout<<"Testing"<<endl;
+            break;
+        }
+        default:{
+            cout<<"exit?"<<endl;
+        }
+    }
+    }while (choice>='1'&&choice<='4');
+    
 
     return 0;
 }
