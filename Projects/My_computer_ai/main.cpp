@@ -26,12 +26,13 @@ int main(int argc, char** argv) {
             roll7=(rand()%6)+1,roll8=(rand()%6)+1;    
     bool computer;
     char roll;
-    int toHit,Droll,NDroll,attk=7,Dmg=10,comp_Hp=15;
+    int toHit,Droll,NDroll,attk=7,Dmg=10,comp_Hp=30,compatk=5,def=15,comp_dmg=10,PlayHp=50;
     
     //do{
         computer=false;    
     do{
     //Initiate the roll to Hit
+    cout<<"Its your turn to attack!"<<endl;    
     cout<<"Roll to hit!"<<endl;
     cout<<"Enter R then hit enter"<<endl;
     cin>>roll;
@@ -75,9 +76,25 @@ int main(int argc, char** argv) {
     if(comp_Hp>0){
         computer=true;
         cout<<"Its the opponents turn!"<<endl;
-        cout<<"The computer tries to attack!"<<endl;
+        cout<<"The opponent tries to attack!"<<endl;
         cout<<"Press R to have them roll"<<endl;
         cin>>roll;
+        compatk+=roll5+roll6;
+        cout<<"The opponent rolled a "<<roll5+roll6<<"!"<<endl;
+        cout<<"The total they have is "<<compatk<<endl;
+        if (compatk>=10){
+            cout<<"The opponent managed to hit you!"<<endl;
+            cout<<"They are going to damage you now"<<endl;
+            cout<<"Press R to have them roll for damage"<<endl;
+            cin>>roll;
+            PlayHp-=(roll7+roll8+comp_dmg);
+            cout<<"The computer rolled a "<<roll7+roll8<<endl;
+            cout<<"The computer hits you for "<<roll7+roll8+comp_dmg<<endl;
+            cout<<"You have "<<PlayHp<<" Hit points left!"<<endl;
+        }
+        
+        else
+            cout<<"The computer missed!"<<endl;
         
     }
     else{
@@ -85,9 +102,11 @@ int main(int argc, char** argv) {
     }    
     }while (comp_Hp>=1);
 
-  //}while (comp_Hp<=0);
-    cout<<"You win!"<<endl;
-    
+    if (comp_Hp<=0){
+        cout<<"You win!"<<endl;
+    }else 
+        cout<<"You died!"<<endl;
+ 
 
 
 
