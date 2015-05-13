@@ -95,24 +95,21 @@ int main(int argc, char** argv) {
            
     }
     //Reserve this spot for the input into a file
-    cout<<"Your chosen stats will be put into a file if you want to use it"
+    cout<<"Your chosen stats will be put into a file if you want to use it "
             "later"<<endl;
     fileout.open("Your_Stats.dat");
     fileout<<"Your Pow is = "<<pow<<"\r\n"
             <<"Your Def is = "<<def<<"\r\n"
             <<"Your Attk is = "<<attk<<endl;
     fileout.close();
-    cout<<"Your stats have been recorded to a file!"<<endl;
     
     
     //After their stats are either input or rolled, have them select their
     //opponents from the list
     cout<<"Please select your opponent\n";
     char choice;
-    bool computer;
-    short compHP,playHP;
     do{
-    cout<<"Type 1 to fight problem 1"<<endl;
+    cout<<"Type 1 to fight a Grunt"<<endl;
     cout<<"Type 2 to fight problem 2"<<endl;
     cout<<"Type 3 to fight problem 3"<<endl;
     cout<<"Type 4 to fight the Cable Bill"<<endl;
@@ -121,7 +118,78 @@ int main(int argc, char** argv) {
     //set up the menu for the different opponents
     switch(choice){
         case '1':{
-            cout<<"Testing"<<endl;
+                //Variables
+                //different dice rolls for player and opponent, 2 sets, one for hitting
+                //one for damage rolls. If i were smarter i could probably reduce it to just
+                //the two dice rolls lol
+                int roll3=(rand()%6)+1,roll4=(rand()%6)+1,roll5=(rand()%6)+1,
+                    roll6=(rand()%6)+1,roll7=(rand()%6)+1,roll8=(rand()%6)+1,
+                    roll9=(rand()%6)+1,roll10=(rand()%6)+1;    
+                bool computer;
+                char roll;
+                int toHit,Droll,NDroll,Dmg,comp_Hp=15;
+
+                //do{
+                    computer=false;    
+                do{
+                srand(static_cast<int>(time(0)));
+                //Initiate the roll to Hit
+                cout<<"A Grunt decides to pick a fight!"<<endl;    
+                cout<<"Roll to hit!"<<endl;
+                cout<<"Enter R then hit enter"<<endl;
+                cin>>roll;
+                if (roll=='r'||roll=='R'){
+                    Droll=roll3+roll4;
+                }
+                cout<<"You rolled a "<<Droll;
+                toHit=Droll+attk;
+                cout<<"! Added to your attack modifer of "<<attk<<
+                       " you got a total of "<<toHit<<endl;
+                //If the player hits
+                            if (toHit>=12){
+                            //Roll for Damage
+                            cout<<"You hit!"<<endl;
+                            cout<<"Roll for Damage!"<<endl;
+                            cout<<"Enter R then hit enter"<<endl;
+                            cin>>roll;
+                            if (roll=='r'||roll=='R'){
+                            NDroll=roll5+roll6;
+                            }
+
+                            cout<<"You rolled a "<<NDroll<<endl;
+                            Dmg=NDroll+pow;
+                            cout<<"Your Damage total is "<<Dmg<<endl;
+                            comp_Hp-=Dmg;
+                            //If the damage is enough to kill the target
+                            if (Dmg>=15){
+                            cout<<"You hit the target for "<<-(comp_Hp)<<" damage!"<<endl;
+                            cout<<"The target is dead!"<<endl;
+                            //if they dont hit hard enough
+                            }else
+                                cout<<"You didnt hit hard enough! The target lives!"<<endl;
+                            }
+
+                //If the player misses            
+                        else{
+                            cout<<"You missed!"<<endl;
+                        }
+                cout<<"The opponents health is at "<<comp_Hp<<endl;
+                //Switching to the computer if the computer lives
+                if(comp_Hp>0){
+                    computer=true;
+                    cout<<"Its the opponents turn!"<<endl;
+                    cout<<"The computer tries to attack!"<<endl;
+                    cout<<"Press R to have them roll"<<endl;
+                    cin>>roll;
+
+                }
+                else{
+                    computer=false;
+                }    
+                }while (comp_Hp>=1);
+
+              //}while (comp_Hp<=0);
+                cout<<"You win!"<<endl;
             break;
         }
         case '2':{
