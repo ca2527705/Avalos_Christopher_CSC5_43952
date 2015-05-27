@@ -12,17 +12,19 @@
 
 using namespace std;
 
-short intro(short pow,short def,short attk);
+ short intro(short& pow,short& def,short& attk);
 
 int main(int argc, char** argv) {
     short pow,def,attk;
     
     intro(pow,def,attk);
     
+    cout<<pow<<" "<<def<<" "<<attk<<endl;
+    
     return 0;
 }
 
-short intro (short pow, short def, short attk){
+short intro (short& pow, short& def, short& attk){
     //Mostly variables involving dice rolls and the random generator
     //rolls using D6
     int roll1=(rand()%6)+1,roll2=(rand()%6)+1,playHP=50;
@@ -102,4 +104,6 @@ short intro (short pow, short def, short attk){
             <<"Your Def is = "<<def<<"\r\n"
             <<"Your Attk is = "<<attk<<endl;
     fileout.close();
+    
+    return 0;
 }
