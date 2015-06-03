@@ -5,26 +5,34 @@
  * Created on May 13, 2015, 8:14 AM
  */
 
-#include <cstdlib>
+//System Libraries
 #include <iostream>
+#include <cstdlib>
 #include <ctime>
 #include <fstream>
-
 using namespace std;
 
- short intro(short& pow,short& def,short& attk);
 
+//user libraries
+
+//global constants
+
+//function prototypes
+short intro(short& pow,short& def,short& attk);
+short battle(short,short,short);
+short rolls(short,short,short,short,short,short,short,short);
+
+//The fun starts here!
 int main(int argc, char** argv) {
     short pow,def,attk;
     
     intro(pow,def,attk);
-    
-    cout<<pow<<" "<<def<<" "<<attk<<endl;
+    battle(pow,def,attk);
     
     return 0;
 }
 
-short intro (short& pow, short& def, short& attk){
+short intro(short& pow,short& def,short& attk){
     //Mostly variables involving dice rolls and the random generator
     //rolls using D6
     int roll1=(rand()%6)+1,roll2=(rand()%6)+1,playHP=50;
@@ -106,4 +114,362 @@ short intro (short& pow, short& def, short& attk){
     fileout.close();
     
     return 0;
+}
+
+short battle(short pow, short def, short attk){
+    //After their stats are either input or rolled, have them select their
+    //opponents from the list
+    short roll3,roll4,roll5,roll6,roll7,roll8,roll9,roll10;
+    cout<<"Please select your opponent\n";
+    char choice;
+    do{
+    cout<<"Type 1 to fight a Grunt"<<endl;
+    cout<<"Type 2 to fight a Leader"<<endl;
+    cout<<"Type 3 to fight an Elite"<<endl;
+    cout<<"Type 4 to fight The Butcher"<<endl;
+    cin>>choice;
+
+    switch(choice){
+        case '1':{
+                //Variables
+                //different dice rolls for player and opponent, 2 sets, one for hitting
+                //one for damage rolls. If i were smarter i could probably reduce it to just
+                //the two dice rolls lol   
+                bool computer;
+                char roll;
+                int toHit,eRoll,etohit,Droll,NDroll,Dmg,comp_Hp=15,comp_dmg=10,compatk=5,PlayHp=50;
+
+                cout<<"A Grunt decides to pick a fight!"<<endl;                 
+                    computer=false;    
+                do{
+                srand(static_cast<int>(time(0)));
+                rolls (roll3,roll4,roll5,roll6,roll7,
+                roll8,roll9,roll10);
+                //Initiate the roll to Hit  
+                cout<<"Its your turn, Roll to hit!"<<endl;
+                cout<<"Enter R then hit enter"<<endl;
+                cin>>roll;
+                if (roll=='r'||roll=='R'){
+                    Droll=roll3+roll4;
+                }
+                cout<<"You rolled a "<<Droll;
+                toHit=Droll+attk;
+                cout<<"! Added to your attack modifer of "<<attk<<
+                       " you got a total of "<<toHit<<endl;
+                //If the player hits
+                            if (toHit>=12){
+                            //Roll for Damage
+                            cout<<"You hit!"<<endl;
+                            cout<<"Roll for Damage!"<<endl;
+                            cout<<"Enter R then hit enter"<<endl;
+                            cin>>roll;
+                            if (roll=='r'||roll=='R'){
+                            NDroll=roll5+roll6;
+                            }
+                            cout<<"You rolled a "<<NDroll<<endl;
+                            Dmg=NDroll+pow;
+                            cout<<"Your Damage total is "<<Dmg<<endl;
+                            comp_Hp-=Dmg;
+                //If the player misses            
+                            }else{
+                            cout<<"You missed!"<<endl;
+                        }
+                cout<<"The opponents health is at "<<comp_Hp<<endl;
+                //Switching to the computer if the computer lives or player misses
+                    if(comp_Hp>0){
+                    cout<<"You didnt hit hard enough! The target lives!"<<endl;        
+                    computer=true;
+                    cout<<"Its the opponents turn!"<<endl;
+                    cout<<"The opponent tries to attack!"<<endl;
+                    cout<<"Press R to have them roll"<<endl;
+                    cin>>roll;
+                    eRoll=roll5+roll6;
+                    cout<<"The opponent rolled a "<<roll5+roll6<<"!"<<endl;
+                    etohit=eRoll+compatk;
+                    cout<<"The total they have is "<<compatk+eRoll<<endl;
+                    if (etohit>=def){
+                        cout<<"The opponent managed to hit you!"<<endl;
+                        cout<<"They are going to damage you now"<<endl;
+                        cout<<"Press R to have them roll for damage"<<endl;
+                        cin>>roll;
+                        PlayHp-=(roll7+roll8+comp_dmg);
+                        cout<<"The computer rolled a "<<roll7+roll8<<endl;
+                        cout<<"The computer hits you for "<<roll7+roll8+comp_dmg<<endl;
+                        cout<<"You have "<<PlayHp<<" Hit points left!"<<endl;
+                    }
+        
+                else
+                    cout<<"The computer missed!"<<endl;
+
+                }
+                else{
+                    computer=false;
+                }    
+                }while (comp_Hp>=1);
+
+                if (comp_Hp<=0){
+                    cout<<"The target is dead!"<<endl;
+                    cout<<"You win!"<<endl;
+                }else 
+                    cout<<"You died!"<<endl;
+                    break;
+        }
+        case '2':{
+            //Copy paste case 1 but change the comp variables to make them stronger
+                bool computer;
+                char roll;
+                int toHit,eRoll,etohit,Droll,NDroll,Dmg,comp_Hp=20,comp_dmg=12,compatk=6,PlayHp=50;
+
+                cout<<"A Leader decides to pick a fight!"<<endl;                 
+                    computer=false;    
+                do{
+                srand(static_cast<int>(time(0)));
+                int roll3=(rand()%6)+1,roll4=(rand()%6)+1,roll5=(rand()%6)+1,
+                    roll6=(rand()%6)+1,roll7=(rand()%6)+1,roll8=(rand()%6)+1,
+                    roll9=(rand()%6)+1,roll10=(rand()%6)+1; 
+                //Initiate the roll to Hit  
+                cout<<"Its your turn, Roll to hit!"<<endl;
+                cout<<"Enter R then hit enter"<<endl;
+                cin>>roll;
+                if (roll=='r'||roll=='R'){
+                    Droll=roll3+roll4;
+                }
+                cout<<"You rolled a "<<Droll;
+                toHit=Droll+attk;
+                cout<<"! Added to your attack modifer of "<<attk<<
+                       " you got a total of "<<toHit<<endl;
+                //If the player hits
+                            if (toHit>=13){
+                            //Roll for Damage
+                            cout<<"You hit!"<<endl;
+                            cout<<"Roll for Damage!"<<endl;
+                            cout<<"Enter R then hit enter"<<endl;
+                            cin>>roll;
+                            if (roll=='r'||roll=='R'){
+                            NDroll=roll5+roll6;
+                            }
+                            cout<<"You rolled a "<<NDroll<<endl;
+                            Dmg=NDroll+pow;
+                            cout<<"Your Damage total is "<<Dmg<<endl;
+                            comp_Hp-=Dmg;
+                //If the player misses            
+                            }else{
+                            cout<<"You missed!"<<endl;
+                        }
+                cout<<"The opponents health is at "<<comp_Hp<<endl;
+                //Switching to the computer if the computer lives or player misses
+                    if(comp_Hp>0){
+                    cout<<"You didnt hit hard enough! The target lives!"<<endl;        
+                    computer=true;
+                    cout<<"Its the opponents turn!"<<endl;
+                    cout<<"The opponent tries to attack!"<<endl;
+                    cout<<"Press R to have them roll"<<endl;
+                    cin>>roll;
+                    eRoll=roll5+roll6;
+                    cout<<"The opponent rolled a "<<roll5+roll6<<"!"<<endl;
+                    etohit=eRoll+compatk;
+                    cout<<"The total they have is "<<compatk+eRoll<<endl;
+                    if (etohit>=def){
+                        cout<<"The opponent managed to hit you!"<<endl;
+                        cout<<"They are going to damage you now"<<endl;
+                        cout<<"Press R to have them roll for damage"<<endl;
+                        cin>>roll;
+                        PlayHp-=(roll7+roll8+comp_dmg);
+                        cout<<"The computer rolled a "<<roll7+roll8<<endl;
+                        cout<<"The computer hits you for "<<roll7+roll8+comp_dmg<<endl;
+                        cout<<"You have "<<PlayHp<<" Hit points left!"<<endl;
+                    }
+        
+                else
+                    cout<<"The computer missed!"<<endl;
+
+                }
+                else{
+                    computer=false;
+                }    
+                }while (comp_Hp>=1);
+
+                if (comp_Hp<=0){
+                    cout<<"The target is dead!"<<endl;
+                    cout<<"You win!"<<endl;
+                }else 
+                    cout<<"You died!"<<endl;
+                    break;
+        }
+        case '3':{
+                bool computer;
+                char roll;
+                int toHit,eRoll,etohit,Droll,NDroll,Dmg,comp_Hp=25,comp_dmg=12,compatk=7,PlayHp=50;
+
+                cout<<"An Elite decides to pick a fight!"<<endl;                 
+                    computer=false;    
+                do{
+                srand(static_cast<int>(time(0)));
+                int roll3=(rand()%6)+1,roll4=(rand()%6)+1,roll5=(rand()%6)+1,
+                    roll6=(rand()%6)+1,roll7=(rand()%6)+1,roll8=(rand()%6)+1,
+                    roll9=(rand()%6)+1,roll10=(rand()%6)+1; 
+                //Initiate the roll to Hit  
+                cout<<"Its your turn, Roll to hit!"<<endl;
+                cout<<"Enter R then hit enter"<<endl;
+                cin>>roll;
+                if (roll=='r'||roll=='R'){
+                    Droll=roll3+roll4;
+                }
+                cout<<"You rolled a "<<Droll;
+                toHit=Droll+attk;
+                cout<<"! Added to your attack modifer of "<<attk<<
+                       " you got a total of "<<toHit<<endl;
+                //If the player hits
+                            if (toHit>=14){
+                            //Roll for Damage
+                            cout<<"You hit!"<<endl;
+                            cout<<"Roll for Damage!"<<endl;
+                            cout<<"Enter R then hit enter"<<endl;
+                            cin>>roll;
+                            if (roll=='r'||roll=='R'){
+                            NDroll=roll5+roll6;
+                            }
+                            cout<<"You rolled a "<<NDroll<<endl;
+                            Dmg=NDroll+pow;
+                            cout<<"Your Damage total is "<<Dmg<<endl;
+                            comp_Hp-=Dmg;
+                //If the player misses            
+                            }else{
+                            cout<<"You missed!"<<endl;
+                        }
+                cout<<"The opponents health is at "<<comp_Hp<<endl;
+                //Switching to the computer if the computer lives or player misses
+                    if(comp_Hp>0){
+                    cout<<"You didnt hit hard enough! The target lives!"<<endl;        
+                    computer=true;
+                    cout<<"Its the opponents turn!"<<endl;
+                    cout<<"The opponent tries to attack!"<<endl;
+                    cout<<"Press R to have them roll"<<endl;
+                    cin>>roll;
+                    eRoll=roll5+roll6;
+                    cout<<"The opponent rolled a "<<roll5+roll6<<"!"<<endl;
+                    etohit=eRoll+compatk;
+                    cout<<"The total they have is "<<compatk+eRoll<<endl;
+                    if (etohit>=def){
+                        cout<<"The opponent managed to hit you!"<<endl;
+                        cout<<"They are going to damage you now"<<endl;
+                        cout<<"Press R to have them roll for damage"<<endl;
+                        cin>>roll;
+                        PlayHp-=(roll7+roll8+comp_dmg);
+                        cout<<"The computer rolled a "<<roll7+roll8<<endl;
+                        cout<<"The computer hits you for "<<roll7+roll8+comp_dmg<<endl;
+                        cout<<"You have "<<PlayHp<<" Hit points left!"<<endl;
+                    }
+        
+                else
+                    cout<<"The computer missed!"<<endl;
+
+                }
+                else{
+                    computer=false;
+                }    
+                }while (comp_Hp>=1);
+
+                if (comp_Hp<=0){
+                    cout<<"The target is dead!"<<endl;
+                    cout<<"You win!"<<endl;
+                }else 
+                    cout<<"You died!"<<endl;
+                    break;
+        }
+        case '4':{
+                bool computer;
+                char roll;
+                int toHit,eRoll,etohit,Droll,NDroll,Dmg,comp_Hp=50,comp_dmg=16,compatk=9,PlayHp=50;
+
+                cout<<"The Butcher decides to pick a fight!"<<endl;                 
+                    computer=false;    
+                do{
+                srand(static_cast<int>(time(0)));
+                int roll3=(rand()%6)+1,roll4=(rand()%6)+1,roll5=(rand()%6)+1,
+                    roll6=(rand()%6)+1,roll7=(rand()%6)+1,roll8=(rand()%6)+1,
+                    roll9=(rand()%6)+1,roll10=(rand()%6)+1; 
+                //Initiate the roll to Hit  
+                cout<<"Its your turn, Roll to hit!"<<endl;
+                cout<<"Enter R then hit enter"<<endl;
+                cin>>roll;
+                if (roll=='r'||roll=='R'){
+                    Droll=roll3+roll4;
+                }
+                cout<<"You rolled a "<<Droll;
+                toHit=Droll+attk;
+                cout<<"! Added to your attack modifer of "<<attk<<
+                       " you got a total of "<<toHit<<endl;
+                //If the player hits
+                            if (toHit>=13){
+                            //Roll for Damage
+                            cout<<"You hit!"<<endl;
+                            cout<<"Roll for Damage!"<<endl;
+                            cout<<"Enter R then hit enter"<<endl;
+                            cin>>roll;
+                            if (roll=='r'||roll=='R'){
+                            NDroll=roll5+roll6;
+                            }
+                            cout<<"You rolled a "<<NDroll<<endl;
+                            Dmg=NDroll+pow;
+                            cout<<"Your Damage total is "<<Dmg<<endl;
+                            comp_Hp-=Dmg;
+                //If the player misses            
+                            }else{
+                            cout<<"You missed!"<<endl;
+                        }
+                cout<<"The opponents health is at "<<comp_Hp<<endl;
+                //Switching to the computer if the computer lives or player misses
+                    if(comp_Hp>0){
+                    cout<<"You didnt hit hard enough! The target lives!"<<endl;        
+                    computer=true;
+                    cout<<"Its the opponents turn!"<<endl;
+                    cout<<"The opponent tries to attack!"<<endl;
+                    cout<<"Press R to have them roll"<<endl;
+                    cin>>roll;
+                    eRoll=roll5+roll6;
+                    cout<<"The opponent rolled a "<<roll5+roll6<<"!"<<endl;
+                    etohit=eRoll+compatk;
+                    cout<<"The total they have is "<<compatk+eRoll<<endl;
+                    if (etohit>=def){
+                        cout<<"The opponent managed to hit you!"<<endl;
+                        cout<<"They are going to damage you now"<<endl;
+                        cout<<"Press R to have them roll for damage"<<endl;
+                        cin>>roll;
+                        PlayHp-=(roll7+roll8+comp_dmg);
+                        cout<<"The computer rolled a "<<roll7+roll8<<endl;
+                        cout<<"The computer hits you for "<<roll7+roll8+comp_dmg<<endl;
+                        cout<<"You have "<<PlayHp<<" Hit points left!"<<endl;
+                    }
+        
+                else
+                    cout<<"The computer missed!"<<endl;
+
+                }
+                else{
+                    computer=false;
+                }    
+                }while (comp_Hp>=1);
+
+                if (comp_Hp<=0){
+                    cout<<"The target is dead!"<<endl;
+                    cout<<"You win!"<<endl;
+                }else 
+                    cout<<"You died!"<<endl;
+                    break;
+        }
+        default:{
+            cout<<"exit?"<<endl;
+        }
+    }
+    }while (choice>='1'&&choice<='4');
+    //Exit stage right
+    
+}
+
+short rolls(short roll3, short roll4, short roll5,short roll6,short roll7,
+        short roll8,short roll9, short roll10){
+    roll3=(rand()%6)+1,roll4=(rand()%6)+1,roll5=(rand()%6)+1,
+    roll6=(rand()%6)+1,roll7=(rand()%6)+1,roll8=(rand()%6)+1,
+    roll9=(rand()%6)+1,roll10=(rand()%6)+1; 
 }
