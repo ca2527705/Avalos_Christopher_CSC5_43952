@@ -18,7 +18,6 @@ using namespace std;
 //function prototypes
 short intro(short& pow,short& def,short& attk);
 short battle(short,short,short);
-short rolls(short);
 
 //The fun starts here!
 int main(int argc, char** argv) {

@@ -119,7 +119,7 @@ short intro(short& pow,short& def,short& attk){
 short battle(short pow, short def, short attk){
     //After their stats are either input or rolled, have them select their
     //opponents from the list
-    short roll3,roll4,roll5,roll6,roll7,roll8,roll9,roll10;
+    short roll,roll1,roll2;
     cout<<"Please select your opponent\n";
     char choice;
     do{
@@ -143,14 +143,13 @@ short battle(short pow, short def, short attk){
                     computer=false;    
                 do{
                 srand(static_cast<int>(time(0)));
-                rolls (roll3,roll4,roll5,roll6,roll7,
-                roll8,roll9,roll10);
+                rolls (roll1,roll2);
                 //Initiate the roll to Hit  
                 cout<<"Its your turn, Roll to hit!"<<endl;
                 cout<<"Enter R then hit enter"<<endl;
                 cin>>roll;
                 if (roll=='r'||roll=='R'){
-                    Droll=roll3+roll4;
+                    Droll=roll;
                 }
                 cout<<"You rolled a "<<Droll;
                 toHit=Droll+attk;
@@ -467,9 +466,8 @@ short battle(short pow, short def, short attk){
     
 }
 
-short rolls(short roll3, short roll4, short roll5,short roll6,short roll7,
-        short roll8,short roll9, short roll10){
-    roll3=(rand()%6)+1,roll4=(rand()%6)+1,roll5=(rand()%6)+1,
-    roll6=(rand()%6)+1,roll7=(rand()%6)+1,roll8=(rand()%6)+1,
-    roll9=(rand()%6)+1,roll10=(rand()%6)+1; 
+short rolls(short roll1, short roll2){
+    short roll,roll1=(rand()%6)+1,roll2=(rand()%6)+1;
+    roll=roll1+roll2;
+    return roll;
 }
