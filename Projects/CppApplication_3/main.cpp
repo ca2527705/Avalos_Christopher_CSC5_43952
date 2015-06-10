@@ -17,13 +17,14 @@ using namespace std;
 int main(int argc, char** argv) {
     
     ofstream fileout;
+    ifstream filein;
     
     fileout.open("output.dat");
     fileout<<"Hey"<<endl;
     cout<<"Data written to file"<<endl;
     fileout.close();
     
-    ifstream filein;
+
     
     filein.open("output.dat");
     string word;

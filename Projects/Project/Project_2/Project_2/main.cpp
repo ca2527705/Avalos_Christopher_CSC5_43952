@@ -5,10 +5,10 @@
  * Created on May 27, 2015, 8:19 AM
  */
 //System Libraries
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <fstream>
+#include <iostream>//basic cin/cout usage
+#include <cstdlib>//To use the rand
+#include <ctime>//For use in the rand
+#include <fstream>//For use in the file in/out
 using namespace std;
 
 //user libraries
@@ -17,17 +17,17 @@ using namespace std;
 
 //function prototypes
 short intro(short& pow,short& def,short& attk);
-short battle(short,short,short);
+short battle(short,short,short,short);
 short dice(int);
 
 //The fun starts here!
 int main(int argc, char** argv) {
     //define the variables
-    short pow,def,attk;
+    short pow,def,attk,PlayHp;
     
     intro(pow,def,attk);
     
-    battle(pow,def,attk);
+    battle(pow,def,attk,PlayHp=50);
             
     return 0;
 }
@@ -35,7 +35,6 @@ int main(int argc, char** argv) {
 short intro(short& pow,short& def,short& attk){
     //Mostly variables involving dice rolls and the random generator
     //rolls using D6
-    int roll1=(rand()%6)+1,roll2=(rand()%6)+1,playHP=50;
     //Used to determine the stats
     srand(time(0));
     //for file in/out
@@ -65,7 +64,7 @@ short intro(short& pow,short& def,short& attk){
         cout<<"Are you okay with these stats?"<<endl;
         cout<<"Enter Y to accept and N to enter new stats"<<endl;
         cin>>answer;
-    }while (answer=='n'||answer=='N');
+        }while (answer=='n'||answer=='N');
     }
     //If they decide to put in their own stats, they will have to be within
     //a resonable range in order to prevent them from being "over powered"
@@ -92,7 +91,6 @@ short intro(short& pow,short& def,short& attk){
             cout<<"Input a number between or equal to 7 and 9\n";
             cin>>attk;
         }
-
         //show them their choosen results
         cout<<"These are your choosen stats: "<<endl;
         cout<<"Your Pow is "<<pow<<endl;
@@ -116,7 +114,7 @@ short intro(short& pow,short& def,short& attk){
     return 0;
 }
 
-short battle(short pow, short def, short attk){
+short battle(short pow, short def, short attk, short PlayHp=50){
     //Set up the array to keep track of score
     int wins[1],loses[1];
     //After their stats are either input or rolled, have them select their
@@ -142,7 +140,7 @@ short battle(short pow, short def, short attk){
                 bool computer;
                 char roll;
                 int toHit,eRoll,etohit,Droll,NDroll,Dmg,
-                        comp_Hp=15,comp_dmg=10,compatk=5,PlayHp=50;
+                        comp_Hp=15,comp_dmg=10,compatk=5;
 
                 cout<<"A Grunt decides to pick a fight!"<<endl;                 
                     computer=false;    
@@ -388,7 +386,8 @@ short battle(short pow, short def, short attk){
         case '4':{
                 bool computer;
                 char roll;
-                int toHit,eRoll,etohit,Droll,NDroll,Dmg,comp_Hp=50,comp_dmg=16,compatk=9,PlayHp=50;
+                int toHit,eRoll,etohit,Droll,NDroll,Dmg,comp_Hp=50
+                ,comp_dmg=16,compatk=9;
 
                 cout<<"The Butcher decides to pick a fight!"<<endl;                 
                     computer=false;    
